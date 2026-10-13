@@ -32,6 +32,8 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       return user;
     } on FirebaseAuthException catch (error) {
       throw AuthFailure(_describe(error));
+    } catch (error) {
+      throw AuthFailure('Firebase 调用失败：$error');
     }
   }
 
@@ -53,6 +55,8 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       return user;
     } on FirebaseAuthException catch (error) {
       throw AuthFailure(_describe(error));
+    } catch (error) {
+      throw AuthFailure('Firebase 调用失败：$error');
     }
   }
 
@@ -87,7 +91,9 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       case 'network-request-failed':
         return '网络异常，请检查网络连接';
       case 'operation-not-allowed':
-        return '未在 Firebase 控制台开启邮箱密码登录';
+        return '未在 Firebase 控制台开启邮箱密码登录方式';
+      case 'configuration-not-found':
+        return 'Firebase 项目还没配置登录方式，请在控制台 Authentication → 登录方式里启用「电子邮件地址/密码」';
       default:
         return error.message ?? '操作失败，请稍后重试';
     }

@@ -49,3 +49,6 @@ app.*.map.json
 # 反代工具（Node 依赖不必入库）
 tool/coingecko-proxy/node_modules/
 tool/coingecko-proxy/.wrangler/
+
+# 本地 Firebase 配置（不入库）
+.dart-defines
