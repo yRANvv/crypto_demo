@@ -1,0 +1,14 @@
+{
+  "name": "coingecko-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CoinGecko 反代 Worker，供 crypto_demo 在无法直连 CoinGecko 的网络下使用",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "login": "wrangler login"
+  },
+  "devDependencies": {
+    "wrangler": "^4.42.0"
+  }
+}

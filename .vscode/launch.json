@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "① 国内直连（币安行情 + 本地演示登录）",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--dart-define=DATA_SOURCE=binance",
+        "--dart-define=AUTH_MODE=demo"
+      ]
+    },
+    {
+      "name": "② 挂梯子：CoinGecko + 真实 Firebase Auth",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--dart-define=DATA_SOURCE=auto",
+        "--dart-define=AUTH_MODE=auto"
+      ]
+    },
+    {
+      "name": "③ 强制只走 CoinGecko（验收用）",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["--dart-define=DATA_SOURCE=coingecko"]
+    }
+  ]
+}

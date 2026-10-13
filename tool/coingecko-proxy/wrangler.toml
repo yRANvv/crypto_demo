@@ -1,0 +1,7 @@
+name = "coingecko-proxy"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# 部署后会得到 https://coingecko-proxy.<你的账号子域>.workers.dev
+# 想换成自己的域名，在这里加 routes，例如：
+# routes = [{ pattern = "cg.你的域名.com", custom_domain = true }]
