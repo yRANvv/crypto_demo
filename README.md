@@ -242,6 +242,30 @@ flutter run
 * 搜索框实时过滤，提示文案取自当前涨幅最高的币种
 * 添加币对 / 编辑自选（底部弹窗，可增删自选）、下拉刷新
 
+## 构建 APK
+
+```bash
+# 1. 真实 Firebase 鉴权版（交作业用；手机上需要能访问 Google 才能登录）
+flutter build apk --release $(cat .dart-defines)
+
+# 2. 离线演示版（手机没有梯子也能登录，行情依然走真实接口）
+flutter build apk --release $(cat .dart-defines) --dart-define=AUTH_MODE=demo
+
+# 产物路径
+build/app/outputs/flutter-apk/app-release.apk
+```
+
+`.dart-defines` 是本地 Firebase 配置（已加入 `.gitignore`，不会进仓库），内容是六个
+`--dart-define=FIREBASE_*` 参数；不配它也能构建，App 会自动降级为本地演示鉴权。
+
+国内构建的两个坑：
+
+* Gradle 官方发行包（`services.gradle.org`）经常卡在 0 速度，本项目
+  `android/gradle/wrapper/gradle-wrapper.properties` 的 `distributionUrl` 已指向腾讯镜像，
+  需要换回官方源直接改回该地址即可。
+* 首次构建要下载 Gradle、AGP、Kotlin 与 SDK 平台，约 2 GB、耗时十几分钟；
+  之后增量构建只要 30 秒左右。
+
 ## 单元测试
 
 `test/market_formatter_test.dart` 覆盖数字格式化（`$2.28亿`、`1,276.5`、`0.20748`、`+0.16%`）
