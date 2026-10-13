@@ -10,6 +10,20 @@
 自选 / 现货 / 合约 / 期权 / 总览 二级筛选、名称 / 成交额 / 最新价 / 今日涨跌 四列表格，
 底部「添加币对 | 编辑自选」。
 
+## 需求对照
+
+| 需求 | 实现位置 |
+| --- | --- |
+| 构建一个简单加密货币的 App | `features/market`：市场 / 动态 / 牛人榜、自选管理、排序搜索、下拉刷新 |
+| 通过 Firebase Auth 实现用户鉴权 | `features/auth`：注册 / 登录 / 退出 / 登录态持久化 / 路由守卫；未配置时降级为本地演示鉴权 |
+| 数据使用 CoinGecko API | `data/datasources/coin_gecko_market_data_source.dart`（官方 `/coins/markets`，支持 Demo / Pro Key 与自建反代） |
+| flutter_bloc | `AuthBloc`、`MarketBloc`：事件用 `sealed class`，状态用 `Equatable` |
+| get_it | `core/di/injection.dart`：数据源 → 仓库 → Bloc 全量注入 |
+| dio | `core/network/dio_client.dart`：统一超时、请求头、代理；两个数据源共用 |
+| go_router | `core/router/app_router.dart`：路由表 + 登录守卫 + `refreshListenable` |
+
+架构分层、数据流与设计决策见 [docs/architecture.md](docs/architecture.md)。
+
 ## 目录结构
 
 ```

@@ -1,5 +1,8 @@
 # CoinGecko 反代（Cloudflare Worker）
 
+> **当前未启用**：`*.workers.dev` 域名在国内不可达，这个反代仅作为备选方案保留。
+> 实际使用的降级方案是币安公开行情，见项目根目录 README。
+
 给 `crypto_demo` 用的中转站。部署在 Cloudflare 上，由它去拉 `api.coingecko.com`，
 App 只跟这个 Worker 通信，所以本机不需要挂代理。
 
