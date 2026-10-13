@@ -6,9 +6,8 @@ import '../../../../core/network/dio_client.dart';
 import '../models/coin_model.dart';
 import 'market_remote_data_source.dart';
 
-/// 币安公开行情（data-api.binance.vision），无需 Key、无需代理。
-///
-/// 作为 CoinGecko 直连不通时的降级来源，字段映射成同一套 CoinModel。
+/// 币安公开行情（data-api.binance.vision），无需 Key，作为 CoinGecko 的降级来源，
+/// 字段映射成同一套 CoinModel。
 class BinanceMarketDataSource implements MarketRemoteDataSource {
   BinanceMarketDataSource(this._dio);
 

@@ -14,20 +14,15 @@ class Coin extends Equatable {
 
   final String id;
 
-  /// 交易对基础币种，如 BNB。自选列表按它匹配，与数据源无关。
+  /// 如 BNB。自选列表按它匹配，所以与数据源无关。
   final String symbol;
 
   final String name;
   final String imageUrl;
 
-  /// 最新价（USD）。
-  final double price;
-
-  /// 24 小时成交额（USD）。
-  final double volume24h;
-
-  /// 今日涨跌幅（%）。
-  final double changePercent24h;
+  final double price; // USD
+  final double volume24h; // USD
+  final double changePercent24h; // 今日涨跌幅，%
 
   bool get isUp => changePercent24h >= 0;
 

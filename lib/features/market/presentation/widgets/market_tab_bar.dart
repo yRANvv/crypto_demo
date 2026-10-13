@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
-/// 一级 Tab：市场 / 动态 / 牛人榜，选中项带下划线。
 class MarketTabBar extends StatelessWidget {
   const MarketTabBar({
     super.key,
@@ -62,7 +61,7 @@ class _TabItem extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: IntrinsicWidth(
-        // 下划线跟文字同宽，所以用 IntrinsicWidth 让 Column 收缩到文字宽度。
+        // 让下划线跟文字同宽
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,

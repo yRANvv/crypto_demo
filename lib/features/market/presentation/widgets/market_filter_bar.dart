@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
-/// 二级筛选：自选 / 现货 / 合约 / 期权 / 总览，选中的显示为胶囊。
 class MarketFilterBar extends StatelessWidget {
   const MarketFilterBar({
     super.key,

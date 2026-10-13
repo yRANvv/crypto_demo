@@ -10,7 +10,6 @@ import 'coin_avatar.dart';
 
 enum WatchlistSheetMode { add, edit }
 
-/// 添加币对 / 编辑自选。
 class WatchlistSheet extends StatelessWidget {
   const WatchlistSheet({super.key, required this.mode});
 
@@ -123,7 +122,7 @@ class WatchlistSheet extends StatelessWidget {
   }
 }
 
-/// 「自选」下拉分组，目前只有一个默认分组。
+/// 自选分组下拉，目前只有一个分组。
 class WatchlistGroupSheet extends StatelessWidget {
   const WatchlistGroupSheet({super.key});
 

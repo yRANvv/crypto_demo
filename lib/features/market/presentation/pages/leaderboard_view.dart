@@ -9,7 +9,6 @@ import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../auth/presentation/bloc/auth_event.dart';
 import '../../../auth/presentation/bloc/auth_state.dart';
 
-/// 牛人榜页：榜单占位 + 当前登录账号。
 class LeaderboardView extends StatelessWidget {
   const LeaderboardView({super.key});
 

@@ -155,60 +155,16 @@ vs_currency=usd&order=market_cap_desc&per_page=100&page=1
 如果接口超时 / 被限流（429）/ 鉴权失败，界面会提示原因并自动切换到内置演示行情，
 保证 Demo 始终有内容可展示。
 
-### 3. 网络直连不了 CoinGecko 时
+### 3. 直连不了 CoinGecko 时
 
-国内网络无法直连 `coingecko.com` / `api.coingecko.com`（网站打不开、接口超时都是这个原因），
-此时**申请 Key 也没用，必须让请求先通出去**。两种做法：
+国内访问不了 `coingecko.com` / `api.coingecko.com`，**光申请 Key 没用，得先让请求能出去**：
 
-1. **走代理**：本地代理 / 公司出口 / Cloudflare Worker 反代都行。
-
-   Worker 反代我已经写成现成的子项目放在 [`tool/coingecko-proxy`](tool/coingecko-proxy/README.md)，
-   部署只要三条命令。核心代码：
-
-   ```js
-   // Cloudflare Worker：把 https://你的域名/coins/markets 转发到
-   // https://api.coingecko.com/api/v3/coins/markets
-   export default {
-     async fetch(request) {
-       const url = new URL(request.url);
-       // 自动补上 /api/v3 前缀，这样 App 侧只要填域名即可
-       if (!url.pathname.startsWith('/api/v3')) {
-         url.pathname = `/api/v3${url.pathname}`;
-       }
-       url.hostname = 'api.coingecko.com';
-       url.protocol = 'https:';
-       url.port = '';
-       return fetch(new Request(url.toString(), request));
-     },
-   };
-   ```
-
-   拿到 Worker 域名后运行（域名后面不用带 `/api/v3`）：
-
-   ```bash
-   flutter run \
-     --dart-define=COINGECKO_BASE_URL=https://你的worker域名 \
-     --dart-define=COINGECKO_API_KEY=CG-你的Key
-   ```
-
-   验证反代是否可用：浏览器直接打开
-   `https://你的worker域名/coins/markets?vs_currency=usd&per_page=2`，
-   能返回 JSON 就说明通了。
-
-   注意：Worker 的出站 IP 是共享的，CoinGecko 对这类 IP 容易返回 429，
-   建议同时配一个免费的 Demo Key（见上文）。
-
-   如果你本地有 Clash / Surge 这类代理但**没开 TUN（增强）模式**，
-   注意 Flutter 原生请求默认不走系统代理，要用项目内置的代理开关显式指定：
-
-   ```bash
-   flutter run --dart-define=HTTP_PROXY=127.0.0.1:7890
-   ```
-
-   （端口换成你代理软件的 HTTP 端口；Web 端由浏览器接管网络，
-   这个参数不生效，请设置系统 / 浏览器代理。）
-
-2. **换数据源**：项目已内置币安公开行情作为降级来源，见下一节，无需额外配置。
+* **挂代理**：开 TUN / 增强模式最省事；只开系统代理时浏览器能通、原生端不行，
+  原生端要用 `--dart-define=HTTP_PROXY=127.0.0.1:7890` 显式指定（端口换成你自己的）。
+* **自建反代（可选）**：[`tool/coingecko-proxy`](tool/coingecko-proxy/README.md) 是一个写好的
+  Cloudflare Worker，拿到域名后 `--dart-define=COINGECKO_BASE_URL=https://你的域名` 即可。
+  注意 `*.workers.dev` 在国内不可达，只有绑自己的域名才有意义。
+* **什么都不配**：自动降级到币安公开行情，见下一节。
 
 ### 4. 数据源切换与自动降级
 

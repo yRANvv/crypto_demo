@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../bloc/market_state.dart';
 
-/// 表头：名称 / 成交额 / 最新价 / 今日涨跌，可点击排序。
 class MarketTableHeader extends StatelessWidget {
   const MarketTableHeader({
     super.key,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
-/// 底部操作栏：添加币对 | 编辑自选。
 class MarketBottomBar extends StatelessWidget {
   const MarketBottomBar({
     super.key,

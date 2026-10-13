@@ -7,7 +7,6 @@ import '../bloc/market_bloc.dart';
 import '../bloc/market_state.dart';
 import '../widgets/coin_list_tile.dart';
 
-/// 动态页：用同一份行情数据生成涨跌榜。
 class NewsView extends StatelessWidget {
   const NewsView({super.key});
 

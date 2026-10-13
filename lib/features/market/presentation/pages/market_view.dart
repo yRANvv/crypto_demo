@@ -13,7 +13,6 @@ import '../widgets/market_filter_bar.dart';
 import '../widgets/market_table_header.dart';
 import '../widgets/watchlist_sheet.dart';
 
-/// 市场页：二级筛选 + 表头 + 行情列表 + 底部操作栏。
 class MarketView extends StatelessWidget {
   const MarketView({super.key});
 
@@ -62,7 +61,7 @@ class MarketView extends StatelessWidget {
     _showSheet(context, const WatchlistGroupSheet());
   }
 
-  /// 弹窗在新路由里，拿不到上层的 Provider，所以显式带上 Bloc。
+  /// 弹窗是新路由，拿不到上层的 Provider，得显式带上 Bloc。
   void _showSheet(BuildContext context, Widget child) {
     final MarketBloc bloc = context.read<MarketBloc>();
     showModalBottomSheet<void>(

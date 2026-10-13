@@ -6,11 +6,8 @@ import '../../domain/repositories/market_repository.dart';
 import '../datasources/market_remote_data_source.dart';
 import '../datasources/market_snapshot_data.dart';
 
-/// 多数据源行情仓库。
-///
-/// auto 模式首次加载时两个来源并发，只给 CoinGecko 一个很短优先窗口：
-/// 窗口内没返回就先用币安，避免被墙的网络下干等超时；之后记住可用的来源。
-/// 全部失败时回落到内置快照，保证界面永远有内容。
+/// auto 模式下首次加载并发探测两个来源，给 CoinGecko 一个 2.5 秒的优先窗口，
+/// 避免网络不通时干等超时；全部失败则回落到内置快照。
 class MarketRepositoryImpl implements MarketRepository {
   MarketRepositoryImpl({
     required this.coinGecko,

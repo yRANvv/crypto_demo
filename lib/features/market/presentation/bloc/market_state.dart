@@ -71,7 +71,6 @@ class MarketState extends Equatable {
     );
   }
 
-  /// 当前筛选 + 搜索 + 排序之后的列表。
   List<Coin> get visibleCoins {
     final List<Coin> source = switch (categoryIndex) {
       0 => _watchlistCoins(),

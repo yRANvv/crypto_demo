@@ -6,7 +6,7 @@ import '../bloc/market_bloc.dart';
 import '../bloc/market_event.dart';
 import '../bloc/market_state.dart';
 
-/// 顶部搜索框，提示文案是当前涨幅最高的币种。
+/// 提示文案取当前涨幅最高的币种。
 class MarketSearchBar extends StatefulWidget {
   const MarketSearchBar({super.key});
 

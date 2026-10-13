@@ -5,7 +5,6 @@ import '../../../../core/utils/market_formatter.dart';
 import '../../domain/entities/coin.dart';
 import 'coin_avatar.dart';
 
-/// 行情列表行：币种 / 成交额 / 最新价 / 今日涨跌。
 class CoinListTile extends StatelessWidget {
   const CoinListTile({super.key, required this.coin});
 
@@ -66,7 +65,7 @@ class CoinListTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                // 价格可能很长（比如 BTC 的 82,690.00），缩放而不是省略。
+                // 长价格缩放，不截断
                 _ScaledText(
                   text: MarketFormatter.price(coin.price),
                   style: const TextStyle(

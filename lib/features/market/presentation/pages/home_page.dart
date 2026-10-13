@@ -12,7 +12,6 @@ import 'leaderboard_view.dart';
 import 'market_view.dart';
 import 'news_view.dart';
 
-/// 首页外壳：搜索框 + 一级 Tab。
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
