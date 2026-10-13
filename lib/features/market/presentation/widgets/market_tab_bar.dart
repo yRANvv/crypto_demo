@@ -60,32 +60,26 @@ class _TabItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      child: IntrinsicWidth(
-        // 让下划线跟文字同宽
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                color: selected
-                    ? AppColors.textPrimary
-                    : AppColors.textSecondary,
-              ),
+      // 下划线用 Container 的底边框实现：宽度自动贴合文字，且不受字号缩放影响
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 7),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: selected ? AppColors.textPrimary : Colors.transparent,
+              width: 3,
             ),
-            const SizedBox(height: 7),
-            Container(
-              height: 3,
-              decoration: BoxDecoration(
-                color: selected ? AppColors.textPrimary : Colors.transparent,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-          ],
+          ),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+            color: selected
+                ? AppColors.textPrimary
+                : AppColors.textSecondary,
+          ),
         ),
       ),
     );
